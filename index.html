@@ -35,14 +35,14 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        // ===== CONFIGURATION - UPDATE FOR EACH CLIENT =====
-        const CONFIG = {
+        // ===== URATION - UPDATE FOR EACH CLIENT =====
+        const  = {
             // TODO: Replace with client-specific values
-            SHEET_ID: 'REPLACE_WITH_SHEET_ID',
-            API_KEY: 'REPLACE_WITH_API_KEY',
+            SHEET_ID: '1WKcbEPkbO-ljR5xJHURWMdg1ip6MiNwFsdmQK52hp6g',
+            API_KEY: 'AIzaSyABznAS0fH0tYNh6wlS_iEL08b6znNJCL8',
             CLIENT_INFO_SHEET: 'Client Info',
             ADS_SHEET: 'Ads Masterlist',
-            APPS_SCRIPT_URL: 'REPLACE_WITH_APPS_SCRIPT_URL',
+            APPS_SCRIPT_URL: 'https://script.google.com/a/macros/staticshift.com.au/s/AKfycbwKlwQ_3T2de3YJWtzVTxPsIGFzQc0QI3_HXbTXmYEaJh0qtbttDY-38iVjhdEo1XsG/exec',
             
             // Column mapping - DO NOT CHANGE unless sheet structure changes
             ADS_COLUMNS: {
@@ -484,8 +484,8 @@
                     setError(null);
 
                     const [adsResponse, clientResponse] = await Promise.all([
-                        fetch(`https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.SHEET_ID}/values/${CONFIG.ADS_SHEET}?key=${CONFIG.API_KEY}`),
-                        fetch(`https://sheets.googleapis.com/v4/spreadsheets/${CONFIG.SHEET_ID}/values/${CONFIG.CLIENT_INFO_SHEET}?key=${CONFIG.API_KEY}`)
+                        fetch(`https://sheets.googleapis.com/v4/spreadsheets/${.SHEET_ID}/values/${.ADS_SHEET}?key=${.API_KEY}`),
+                        fetch(`https://sheets.googleapis.com/v4/spreadsheets/${.SHEET_ID}/values/${.CLIENT_INFO_SHEET}?key=${.API_KEY}`)
                     ]);
 
                     if (!adsResponse.ok || !clientResponse.ok) {
@@ -502,10 +502,10 @@
                     if (clientData.values && clientData.values.length > 1) {
                         const clientRow = clientData.values[1];
                         extractedClientInfo = {
-                            businessName: clientRow[CONFIG.CLIENT_COLUMNS.BUSINESS_NAME] || '',
-                            websiteUrl: clientRow[CONFIG.CLIENT_COLUMNS.WEBSITE_URL] || '',
-                            destinationUrl: clientRow[CONFIG.CLIENT_COLUMNS.DESTINATION_URL] || '',
-                            profileImage: clientRow[CONFIG.CLIENT_COLUMNS.PROFILE_IMAGE] || ''
+                            businessName: clientRow[.CLIENT_COLUMNS.BUSINESS_NAME] || '',
+                            websiteUrl: clientRow[.CLIENT_COLUMNS.WEBSITE_URL] || '',
+                            destinationUrl: clientRow[.CLIENT_COLUMNS.DESTINATION_URL] || '',
+                            profileImage: clientRow[.CLIENT_COLUMNS.PROFILE_IMAGE] || ''
                         };
                     }
 
@@ -520,15 +520,15 @@
                             websiteUrl: extractedClientInfo.websiteUrl,
                             destinationUrl: extractedClientInfo.destinationUrl,
                             profileImage: extractedClientInfo.profileImage,
-                            status: row[CONFIG.ADS_COLUMNS.STATUS] || '',
-                            adName: row[CONFIG.ADS_COLUMNS.AD_NAME] || '',
-                            campaignAngle: row[CONFIG.ADS_COLUMNS.CAMPAIGN_ANGLE] || '',
-                            headline: row[CONFIG.ADS_COLUMNS.HEADLINE] || '',
-                            adCopy: row[CONFIG.ADS_COLUMNS.AD_COPY] || '',
-                            creativeAsset: row[CONFIG.ADS_COLUMNS.CREATIVE_ASSETS] || '',
-                            recommendedCTA: row[CONFIG.ADS_COLUMNS.RECOMMENDED_CTA] || 'Learn More',
-                            imageText: row[CONFIG.ADS_COLUMNS.IMAGE_TEXT] || '',
-                            notes: row[CONFIG.ADS_COLUMNS.CLIENT_NOTE] || ''
+                            status: row[.ADS_COLUMNS.STATUS] || '',
+                            adName: row[.ADS_COLUMNS.AD_NAME] || '',
+                            campaignAngle: row[.ADS_COLUMNS.CAMPAIGN_ANGLE] || '',
+                            headline: row[.ADS_COLUMNS.HEADLINE] || '',
+                            adCopy: row[.ADS_COLUMNS.AD_COPY] || '',
+                            creativeAsset: row[.ADS_COLUMNS.CREATIVE_ASSETS] || '',
+                            recommendedCTA: row[.ADS_COLUMNS.RECOMMENDED_CTA] || 'Learn More',
+                            imageText: row[.ADS_COLUMNS.IMAGE_TEXT] || '',
+                            notes: row[.ADS_COLUMNS.CLIENT_NOTE] || ''
                         })).filter(ad => 
                             ad.status.toLowerCase() === 'for review' || 
                             ad.status === '' ||
@@ -559,7 +559,7 @@
                 setUpdating(prev => ({ ...prev, [ad.rowIndex]: true }));
 
                 try {
-                    await fetch(CONFIG.APPS_SCRIPT_URL, {
+                    await fetch(.APPS_SCRIPT_URL, {
                         method: 'POST',
                         mode: 'no-cors',
                         headers: { 'Content-Type': 'application/json' },
